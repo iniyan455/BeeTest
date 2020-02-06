@@ -2,27 +2,21 @@ package com.iniyan.krazybee;
 
 import android.app.ProgressDialog;
 import android.os.Bundle;
-import android.os.Handler;
 import android.util.Log;
-
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.fragment.app.Fragment;
 import androidx.viewpager.widget.ViewPager;
-
 import com.google.android.material.tabs.TabLayout;
 import com.iniyan.krazybee.Adapter.FragmentAdapter;
 import com.iniyan.krazybee.Fragment.DynamicFragment;
 import com.iniyan.krazybee.Model.Album;
 import com.iniyan.krazybee.NetworkClient.ApiDataService;
 import com.iniyan.krazybee.NetworkClient.RetrofitClient;
-
 import org.jetbrains.annotations.NotNull;
-
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
-
 import retrofit2.Call;
 import retrofit2.Callback;
 
