@@ -1,7 +1,5 @@
 package com.iniyan.krazybee.NetworkClient;
 
-import com.iniyan.krazybee.NetworkClient.ApiDataService;
-
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 

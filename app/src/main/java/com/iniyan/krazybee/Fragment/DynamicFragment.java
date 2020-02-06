@@ -8,13 +8,11 @@ import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.DefaultItemAnimator;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
-
 import com.iniyan.krazybee.Adapter.GridLayoutAdapter;
 import com.iniyan.krazybee.Model.AlbumData;
 import com.iniyan.krazybee.NetworkClient.ApiDataService;
 import com.iniyan.krazybee.NetworkClient.RetrofitClient;
 import com.iniyan.krazybee.R;
-
 import org.jetbrains.annotations.NotNull;
 import java.util.ArrayList;
 import retrofit2.Call;
@@ -27,26 +25,17 @@ public class DynamicFragment extends Fragment {
 
     private RecyclerView recyclerView;
 
-    public void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-
-    }
-
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
 
-
         View view = inflater.inflate(R.layout.home_fragment, container, false);
         recyclerView = (RecyclerView) view.findViewById(R.id.recycler_view);
-
 
         if (getArguments() != null) {
             id = this.getArguments().getInt("id");
             Log.d(TAG, "getting data" + id);
         }
-
         apiRequestCall(id);
-
 
         return view;
     }
@@ -62,20 +51,15 @@ public class DynamicFragment extends Fragment {
         call.enqueue(new Callback<ArrayList<AlbumData>>() {
             @Override
             public void onResponse(@NotNull Call<ArrayList<AlbumData>> call, retrofit2.Response<ArrayList<AlbumData>> response) {
-
                 if (response.isSuccessful()) {
                     assert response.body() != null;
-
                     setUpRecyclerView(response.body());
-
-
                 }
             }
 
             @Override
             public void onFailure(@NotNull Call<ArrayList<AlbumData>> call, Throwable t) {
                 Log.d(TAG, "error===>" + t.getMessage());
-
             }
         });
     }

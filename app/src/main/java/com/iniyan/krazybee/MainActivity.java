@@ -28,26 +28,21 @@ import retrofit2.Callback;
 
 public class MainActivity extends AppCompatActivity {
 
-    ViewPager viewPager;
-    TabLayout tabLayout;
-    ArrayList<Fragment> fragments;
-    Toolbar toolbar;
-    Handler mHandler;
-    ProgressDialog pd;
-    String TAG = MainActivity.class.getName();
+    private ViewPager viewPager;
+    private TabLayout tabLayout;
+    private ArrayList<Fragment> fragments;
+    private Toolbar toolbar;
+    private ProgressDialog pd;
+    private String TAG = MainActivity.class.getName();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-
         toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
-        mHandler = new Handler();
-
         viewPager = (ViewPager) findViewById(R.id.pager);
         tabLayout = (TabLayout) findViewById(R.id.tabLayout);
-
         fragments = new ArrayList<>();
         pd = new ProgressDialog(MainActivity.this, R.style.MyTheme);
         pd.setCancelable(false);
@@ -55,7 +50,6 @@ public class MainActivity extends AppCompatActivity {
         pd.show();
 
         apiCall();
-
 
     }
 
@@ -78,17 +72,11 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onTabSelected(TabLayout.Tab tab) {
                 int position = tab.getPosition();
-
-
                 Bundle bundle = new Bundle();
                 bundle.putInt("id", albumsList.get(position).getId());
-
-
                 DynamicFragment myFragment = new DynamicFragment();
                 myFragment.setArguments(bundle);
                 getSupportFragmentManager().beginTransaction().replace(R.id.container, myFragment).commit();
-
-
             }
 
             @Override
@@ -102,7 +90,6 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-
     }
 
     public void apiCall() {
@@ -110,7 +97,6 @@ public class MainActivity extends AppCompatActivity {
         final ApiDataService apiDataService = RetrofitClient.getService();
 
         Call<List<Album>> call = apiDataService.getLoadFragment();
-
 
         call.enqueue(new Callback<List<Album>>() {
             @Override
