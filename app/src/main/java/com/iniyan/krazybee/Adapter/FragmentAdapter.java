@@ -6,28 +6,37 @@ import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentPagerAdapter;
 
+import com.iniyan.krazybee.Fragment.DynamicFragment;
+
 import java.util.ArrayList;
 
 public class FragmentAdapter extends FragmentPagerAdapter {
 
-    private Context context;
-    private ArrayList<Fragment> fragments;
 
-    public FragmentAdapter(FragmentManager fm, Context context, ArrayList<Fragment> fragments) {
+    private int mNumOfTabs;
+    private ArrayList<String> tabTitle;
+
+
+    public FragmentAdapter(FragmentManager fm, int NumOfTabs, ArrayList<String> tabTitle) {
         super(fm);
-        this.context = context;
-        this.fragments = fragments;
+        this.mNumOfTabs = NumOfTabs;
+        this.tabTitle = tabTitle;
     }
+
 
     @Override
     public int getCount() {
-        return fragments.size();
+
+          return mNumOfTabs;
     }
 
 
     @Override
-    public Fragment getItem(int i) {
-        return fragments.get(i);
+    public Fragment getItem(int position) {
+
+        return DynamicFragment.newInstance(position);
+
+
     }
 
 }
