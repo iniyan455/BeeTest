@@ -14,6 +14,7 @@ import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.iniyan.krazybee.Adapter.GridLayoutAdapter;
+import com.iniyan.krazybee.Model.Album;
 import com.iniyan.krazybee.Model.AlbumData;
 import com.iniyan.krazybee.NetworkClient.ApiDataService;
 import com.iniyan.krazybee.NetworkClient.RetrofitClient;
@@ -26,6 +27,7 @@ import org.greenrobot.eventbus.ThreadMode;
 import org.jetbrains.annotations.NotNull;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -37,10 +39,10 @@ public class DynamicFragment extends Fragment {
 
     private RecyclerView recyclerView;
 
-    public static DynamicFragment newInstance(int val) {
+    public static DynamicFragment newInstance(int val, List<Album> tabTitle) {
         DynamicFragment fragment = new DynamicFragment();
         Bundle args = new Bundle();
-        args.putInt("id", val);
+        args.putInt("id", tabTitle.get(val).getId());
         fragment.setArguments(args);
         return fragment;
     }
@@ -58,11 +60,9 @@ public class DynamicFragment extends Fragment {
             id = this.getArguments().getInt("id");
 
             if (id != 0) {
-                Log.d(TAG, "getting data" + (id + 1));
-                apiRequestCall(id + 1);
+                Log.d(TAG, "getting data" + (id));
+                apiRequestCall(id);
 
-            } else {
-                apiRequestCall(id + 1);
             }
         }
         return view;

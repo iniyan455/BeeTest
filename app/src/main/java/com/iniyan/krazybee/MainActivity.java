@@ -90,7 +90,7 @@ public class MainActivity extends AppCompatActivity {
             tabTitle.add(albumsList.get(i).getTitle());
         }
         FragmentAdapter adapter = new FragmentAdapter
-                (getSupportFragmentManager(), tabLayout.getTabCount(), tabTitle);
+                (getSupportFragmentManager(), tabLayout.getTabCount(), tabTitle,albumsList);
         viewPager.setAdapter(adapter);
         viewPager.addOnPageChangeListener(new TabLayout.TabLayoutOnPageChangeListener(tabLayout));
         tabLayout.setTabGravity(TabLayout.GRAVITY_FILL);

@@ -7,8 +7,10 @@ import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentPagerAdapter;
 
 import com.iniyan.krazybee.Fragment.DynamicFragment;
+import com.iniyan.krazybee.Model.Album;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public class FragmentAdapter extends FragmentPagerAdapter {
 
@@ -16,11 +18,13 @@ public class FragmentAdapter extends FragmentPagerAdapter {
     private int mNumOfTabs;
     private ArrayList<String> tabTitle;
 
+    private List<Album> albumslist;
 
-    public FragmentAdapter(FragmentManager fm, int NumOfTabs, ArrayList<String> tabTitle) {
+    public FragmentAdapter(FragmentManager fm, int NumOfTabs, ArrayList<String> tabTitle, List<Album> albumslist) {
         super(fm);
         this.mNumOfTabs = NumOfTabs;
         this.tabTitle = tabTitle;
+        this.albumslist=albumslist;
     }
 
 
@@ -34,7 +38,7 @@ public class FragmentAdapter extends FragmentPagerAdapter {
     @Override
     public Fragment getItem(int position) {
 
-        return DynamicFragment.newInstance(position);
+        return DynamicFragment.newInstance(position,albumslist);
 
 
     }
